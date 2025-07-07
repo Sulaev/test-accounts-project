@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
-import { useAccountsStore } from './stores/useAccountsStore'
+import { useAccountsStore, type Account } from './stores/useAccountsStore'
 import AccountRow from './components/AccountRow.vue'
 import { NButton, NSpace, NAlert } from 'naive-ui'
 import { h } from 'vue'
@@ -63,8 +63,7 @@ function addAccount() {
     isValid: false,
   })
 }
-
-function onUpdate(id: string, data: any) {
+function onUpdate(id: string, data: Partial<Account>) {
   store.updateAccount(id, data)
   store.saveToLocalStorage()
 }
